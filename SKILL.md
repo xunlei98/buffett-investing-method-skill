@@ -13,6 +13,19 @@ Analyze a company as if buying the whole business, following Buffett's stated me
 - Get the current share price, shares outstanding, net debt and market capitalisation, with the date.
 - Do every calculation with code or a spreadsheet, never by mental arithmetic, and show the inputs. If a figure is not in the data you have, write "not available"; never estimate it silently.
 
+### Where the data comes from (free stack — no paid subscription)
+
+Use only these. Do not call QuantGPT, Sharadar, Tiingo's API or any other paid feed; there is no subscription to spend.
+
+- **Filings and XBRL (primary source, free):**
+  `cd "/Users/alvinlim/Documents/Second Brain" && /Users/alvinlim/.pyenv/versions/3.10.13/bin/python3 tools/sec-edgar/client.py <ticker|filings|download|facts|concept> ...`
+  `facts` gives ten years of every XBRL tag; `filings` gives the original 10-K/10-Q/8-K; `download` puts originals under `raw/sec-edgar/`. Every number in the memo comes from a filing, or from code run over filing numbers.
+- **Current price:** `/Users/alvinlim/.dsh/bot/workspace/tools/quote.py <TICKER>` — Yahoo, end-of-day, delayed. State the date and say it is delayed.
+- **Long price history (for the $1 test and market-value comparisons):**
+  `~/Documents/05 Projects/Tiingo Market Database/tiingo_market.db`, SQLite table `daily` (`date, ticker, open, high, low, close, volume, adj_*`). Coverage starts **2018-01-02** — say so whenever a comparison reaches further back.
+- **Earnings dates (free):** the `filing_date` from `filings`. An 8-K with Item 2.02 is the earnings release day; the 10-Q usually lands one to two days later. No before/after-market flag is available, so do not claim one.
+- If a figure cannot be reached this way, write "not available". Never guess it, and never present a remembered number as data.
+
 ## Step 1. Circle of competence
 
 > "You only have to be able to evaluate companies within your circle of competence. The size of that circle is not very important; knowing its boundaries, however, is vital." (1996, Common Stock Investments)
