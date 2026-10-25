@@ -30,6 +30,18 @@ Buffett's own words, quoted exactly. Locators: ¶N is the Nth paragraph of the c
 
 These are Buffett's stated principles in Berkshire Hathaway's own publications. They describe his intent and reasoning, not a tested rule set. Verification: every quotation above was checked word for word against the original Berkshire text on 12 October 2026. That confirms the quotations are faithful; it does not prove the principles work.
 
+## Operating model used with this method
+
+(Our implementation, not Buffett's words; choose your own and write it down.)
+
+- OE = operating cash flow - all capex - 10-year average acquisitions (outflows only, same-period revenue).
+- Discount rate = 20-day average 10-year Treasury + 4% (quality tier) or +5% (standard). The premium compensates risk; it is not the margin of safety.
+- 10-year forecast: years 1-3 growth at or below the company's own 10-year median OE growth (a signed-contract rate may be used only if lower); years 4-10 converge linearly to g.
+- g = 20-day average 10-year breakeven inflation + 0.5%, rounded to 0.1pp, below the Treasury yield.
+- No separate margin-of-safety multiplier.
+- Quarterly recompute on 20-day averages, not spot rates.
+- If one capex assumption swings the answer, publish both scenarios and take the lower value as the buy line.
+
 ## Related ideas
 
 - [Buffett return on equity and capital allocation](04-roe-and-capital-allocation.md)

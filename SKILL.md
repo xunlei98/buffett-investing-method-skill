@@ -97,9 +97,27 @@ Pass: candid, owner-minded, with a sound capital-allocation record. Fail: promot
 
 Calculate owner earnings (1986, Appendix): reported earnings + depreciation, depletion, amortization and other non-cash charges − the average annual capital spending needed "to fully maintain its long-term competitive position and its unit volume" (plus any extra working capital needed for that). Maintenance capital spending is an estimate: state your assumption and a range. Buffett: "I would rather be vaguely right than precisely wrong." (1986)
 
-Then estimate intrinsic value: discount future owner earnings with explicit growth and discount-rate assumptions, in conservative, base and optimistic cases. Growth belongs inside the calculation: "Growth is always a component in the calculation of value" (1992).
+Then estimate intrinsic value by discounting future owner earnings. Growth belongs inside the calculation: "Growth is always a component in the calculation of value" (1992).
 
-Pass: a value range you can defend line by line. Fail: the range is so wide, or so assumption-driven, that it says nothing; treat that as a circle-of-competence warning.
+### Operating model (our implementation, not Buffett's wording)
+
+- **OE = operating cash flow − all capital expenditure − 10-year average acquisitions** (outflows only; same-period revenue as denominator). Maintenance capex is not disclosed, so any split ratio would be an invented knob; this form also treats a company that buys growth through M&A the same as one that builds it.
+- **Discount rate = 20-day average 10-year Treasury yield + risk premium** (4% for the quality tier, 5% standard). The premium is risk compensation; it is not a margin of safety.
+- **10-year explicit forecast.** Years 1–3: growth backed by signed contracts, capped at the company's own 10-year median OE growth. Years 4–10: converge linearly to g.
+- **g = 20-day average 10-year breakeven inflation + 0.5%**, rounded to 0.1pp, and must stay below the Treasury yield.
+- **No separate margin-of-safety multiplier.** The margin lives in the assumptions, not in a coefficient.
+- Recompute quarterly on 20-day averages; daily rate moves are noise and turn valuation into rate timing.
+- When a capital-spending assumption drives the answer (capex returning to its historical median or staying at today's level), compute both and take the lower value as the buy line.
+
+Fail: the range is so wide, or so assumption-driven, that it says nothing; treat that as a circle-of-competence warning.
+
+### Pitfalls to avoid
+
+- A 5-year forecast with a 3% terminal rate turns a 25% grower into a 3% grower in year six.
+- Discounting at 10% and then multiplying by 0.7 charges the same margin of safety twice.
+- Use **per-share** OE growth; buybacks make total OE growth understate shareholder returns.
+- Cap growth at the 10-year median, or peak-cycle evidence (order books, backlogs) becomes a permanent forecast.
+- Factory-less designers carry their fabs on a foundry's balance sheet, so a capex-based OE favours them over integrated manufacturers. Report both and name the bias.
 
 ## Step 7. Margin of safety and Mr. Market
 
